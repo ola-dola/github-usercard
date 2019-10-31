@@ -2,8 +2,8 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-function getData() {
-  axios.get('https://api.github.com/users/ola-dola')
+function getData(username) {
+  axios.get(`https://api.github.com/users/${username}`)
     .then(response => {
       console.log(response.data);
       makeUserCard(response.data);
@@ -35,8 +35,6 @@ function getData() {
           Using that array, iterate over it, requesting data for each user, creating a new card for each
           user, and adding that card to the DOM.
 */
-
-const followersArray = [];
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -98,7 +96,7 @@ function makeUserCard(userObject) {
  
 }
 
-getData();
+getData('ola-dola');
 
 /* List of LS Instructors Github username's: 
   tetondan
@@ -107,3 +105,14 @@ getData();
   luishrd
   bigknell
 */
+const followersArray = [
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell',
+];
+
+followersArray.map(person => {
+  getData(person);
+});
