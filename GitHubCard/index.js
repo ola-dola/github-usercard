@@ -65,6 +65,7 @@ function makeUserCard(userObject) {
   const username = document.createElement('p');
   const location = document.createElement('p');
   const profile = document.createElement('p');
+  const link = document.createElement('a');
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
@@ -82,11 +83,14 @@ function makeUserCard(userObject) {
   username.textContent = userObject.login;
   location.textContent = userObject.location;
   profile.textContent = `Profile: `;
+  link.href = userObject.html_url;
+  link.textContent = userObject.html_url;
   followers.textContent = `Followers: ${userObject.followers}`;
   following.textContent = `Following: ${userObject.following}`;
   bio.textContent = `Bio: ${userObject.bio}`;
 
   // Appending
+  profile.appendChild(link);
   innerDiv.append(nameOfUser, username, location, profile, followers, following, bio);
   parentDiv.append(userImage, innerDiv);
 
