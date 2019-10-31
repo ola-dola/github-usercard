@@ -10,7 +10,7 @@ axios.get('https://api.github.com/users/ola-dola')
     console.log(error.message);
     
   });
-  
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -53,6 +53,43 @@ const followersArray = [];
 </div>
 
 */
+
+function makeUserCard(userObject) {
+  //Creating elements
+  const parentDiv = document.createElement('div');
+  const userImage = document.createElement('img');
+  const innerDiv = document.createElement('div');
+  const nameOfUser = document.createElement('h3');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  //Adding classes
+  parentDiv.classList.add('card');
+  innerDiv.classList.add('card-info');
+  nameOfUser.classList.add('name');
+  username.classList.add('username');
+
+  //Adding textContent and src
+  userImage.src = userObject.avatar_url;
+
+  nameOfUser.textContent = userObject.name;
+  username.textContent = userObject.login;
+  location.textContent = userObject.location;
+  profile.textContent = `Profile: `;
+  followers.textContent = `Followers: ${userObject.followers}`;
+  following.textContent = `Following: ${userObject.following}`;
+  bio.textContent = `Bio: ${userObject.bio}`;
+
+  // Appending
+  innerDiv.append(nameOfUser, username, location, profile, followers, following, bio);
+  parentDiv.append(userImage, innerDiv);
+
+  return parentDiv;
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
